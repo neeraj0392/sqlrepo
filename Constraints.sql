@@ -1,0 +1,42 @@
+-- use sampledb
+-- 
+-- -- select * from customers 
+-- 
+-- -- insert into customers values(1,"Ravindra",21,"Delhi")
+-- 
+-- -- drop table customers 
+-- 
+-- create table customers(
+-- 	ID int primary key auto_increment ,
+-- 	name varchar(50),
+-- 	age int,
+-- 	emailid varchar(50) unique,
+-- 	createdDate date default CurDate(),
+-- 	check (age>=18)
+-- )
+-- select curdate() 
+-- select * from customers
+-- -- insert into customers(id,name,age,emailid,createdDate) values(1,"Aman",19,"aman@gmail.com","2023-10-10")
+-- -- insert into customers(id,name,age,emailid) values(2,"Tanveer",19,"Tanveer@gmail.com")
+-- insert into customers(id,name,age,emailid) values(null,"Lokesh",null,null)
+-- 
+-- 
+-- insert into customers(name,age,emailid) values("Sumit",17,"sumit@gmail.com")
+-- show index from customers 
+-- 
+-- alter table customers
+-- add MobileNo varchar(10)
+-- 
+-- alter table customers 
+-- drop column MobileNo
+-- 
+-- alter table customers 
+-- modify column age tinyint
+-- 
+-- alter table customers 
+-- drop constraint Constraint_1
+-- 
+-- alter table customers 
+-- add constraint ageConstraint
+-- check (age>=18);
+
