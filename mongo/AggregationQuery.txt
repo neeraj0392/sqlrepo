@@ -1,0 +1,83 @@
+$match example
+db.sales.aggregate([
+{$match:{purchaseMethod:"Online"}}
+])
+
+db.sales.aggregate(
+[
+{$match:{purchaseMethod:"Online"}},
+{$count:"TotalDocuments"}
+]
+)
+
+
+db.sales.aggregate([
+{$match:{purchaseMethod:"Online"}},
+{$limit:3}
+])
+
+
+db.sales.aggregate([
+{$match:{purchaseMethod:"Online"}},
+{$project:{storeLocation:1,"customer.gender":1,_id:0}}
+])
+
+db.sales.aggregate([
+{$match:{purchaseMethod:"Online"}},
+{$project:{storeLocation:1,"customer.gender":1,_id:0}},
+{$limit:5}
+])
+
+
+$group example
+//
+db.sales.aggregate([
+{$group:{_id:"$purchaseMethod"}}
+])
+
+db.sales.aggregate([
+{$group:{_id:"$purchaseMethod", totalSales:{$count:{}}}}
+])
+
+db.sales.aggregate([
+{$group:{_id:{method:"$purchaseMethod",location:"$storeLocation"}}},
+{$sort:{"_id.method":1}}
+])
+
+db.sales.aggregate([
+{$group:{_id:{method:"$purchaseMethod",location:"$storeLocation"},totalSales:{$count:{}}}},
+{$sort:{"_id.location":1}}
+])
+
+
+db.sales.aggregate([
+{$group:{_id:{method:"$purchaseMethod",location:"$storeLocation"},customerEmail:{$push:"$customer.email"}}},
+{$sort:{"_id.location":1}}
+])
+
+
+$group salaries collection example
+
+db.salaries.aggregate([
+{$group:{_id:{year:"$fiscal_year",salary:"$salary"}, names:{$push:"$name"}}},
+{$sort:{"_id.year":1}}
+])
+
+
+db.salaries.aggregate([
+{$group:{_id:{year:"$fiscal_year"}, totalSalary:{$sum:"$salary"}}},
+{$sort:{"_id.year":1}}
+])
+
+db.salaries.aggregate([
+{$group:{_id:{year:"$fiscal_year",department:"$dept"}, totalSalary:{$sum:"$salary"}}},
+{$sort:{"_id.year":1}}
+])
+
+
+$unwind example
+
+db.sales.aggregate([
+{$match:{_id:ObjectId('5bd761dcae323e45a93ccfe8')}},
+{$unwind:"$items"}
+])
